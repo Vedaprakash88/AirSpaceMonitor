@@ -16,6 +16,7 @@ class SelectClean:
         warnings.filterwarnings(action='ignore', category=FutureWarning)
         today = datetime.now()
         fetchobj = FetchAirspace()
+
         df: DataFrame = fetchobj.current_space(bounds=bounds)
 
         df.columns = ['ICAO 24-bit Code', 'Latitude', 'Longitude', 'Track', 'Altitude', 'Airspeed(kts)', 'Null', 'DNA',
@@ -95,13 +96,28 @@ def file_checker(carrier: str, bounds: str):
     return None
 
 
-# Initiates the data program
-file_checker('NAT', '55.675,36.98,-2.057,44.876')  # looking for NATO aircraft in European and Ukrainian Airspace
-file_checker('RCH', '55.675,36.98,-2.057,44.876')  # looking for USAF aircraft in European and Ukrainian Airspace
-file_checker('IAM', '55.675,36.98,-2.057,44.876')  # looking for Italian AF aircraft in European and Ukrainian Airspace
-file_checker('RFR', '55.675,36.98,-2.057,44.876')  # looking for Royal (British) AF aircraft in European and Ukrainian Airspace
-file_checker('BAF', '55.675,36.98,-2.057,44.876')  # looking for Belgium AF aircraft in European and Ukrainian Airspace
-file_checker('HVK', '55.675,36.98,-2.057,44.876')  # looking for Turkish AF aircraft in European and Ukrainian Airspace
+def extract_flight():
+    df_ex: DataFrame = pd.read_excel("Flights.xlsx", sheet_name="Sheet1",
+                                     index_col=0)
+    return df_ex
 
+
+def save_flights(df_ex: DataFrame):
+    df: DataFrame = pd.read_excel("Flights.xlsx", sheet_name="Sheet1",
+                                  index_col=0)
+    df_ex2: DataFrame = df_ex.append(df, ignore_index=False)
+    df_ex2.to_excel("Flights.xlsx", index=True, header=True, index_label=0)
+
+
+# Initiates the data program
+de_ex = extract_flight()
+file_checker('NAT', '60.097,20.28,-11.865,60.819')  # looking for NATO aircraft in European and Ukrainian Airspace
+file_checker('RCH', '60.097,20.28,-11.865,60.819')  # looking for USAF aircraft in European and Ukrainian Airspace
+file_checker('IAM', '60.097,20.28,-11.865,60.819')  # looking for Italian AF aircraft in European and Ukrainian Airspace
+file_checker('RFR',
+             '60.097,20.28,-11.865,60.819')  # looking for Royal (British) AF aircraft in European and Ukrainian Airspace
+file_checker('BAF', '60.097,20.28,-11.865,60.819')  # looking for Belgium AF aircraft in European and Ukrainian Airspace
+file_checker('HVK', '60.097,20.28,-11.865,60.819')  # looking for Turkish AF aircraft in European and Ukrainian Airspace
+save_flights(de_ex)
 # A/c without carrier
 # UC01 - Greece coast guard
