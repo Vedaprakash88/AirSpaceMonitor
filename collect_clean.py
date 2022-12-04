@@ -22,7 +22,7 @@ class SelectClean:
         df: DataFrame = fetchobj.current_space(bounds=bounds)
 
         df.columns = ['ICAO 24-bit Code', 'Latitude', 'Longitude', 'Track', 'Altitude', 'Airspeed(kts)', 'Null', 'DNA',
-                      'AC Type', 'AC Registration', 'DNA2', 'Origin', 'Destination', 'FlightNo', 'Null2', 'Null3',
+                      'AC_Type', 'AC_Registration', 'DNA2', 'Origin', 'Destination', 'FlightNo', 'Null2', 'Null3',
                       'CallSign',
                       'Null4', 'Carrier']
 

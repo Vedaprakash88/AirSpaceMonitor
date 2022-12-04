@@ -33,16 +33,29 @@ class PlotFindings:
     # Plot Date vs No.of Flights
     @staticmethod
     def plot_dt_v_flight_count(df: DataFrame) -> plt:
-        x_values = df.Date
+
+        lst_dates = df.Date.unique()
+        for each_date in lst_dates:
+            no_flt: DataFrame = df.loc[df['Date'] == each_date]
+
+            
 
 
 
 
 
 
-        y_values = df.Altitude
-        z_values = df.AC_Type
 
+
+
+        # for x in df.Date.unique():
+        #     y = (df.AC_Type == lst_ac).sum()
+        #     lst_cnt[x] = y
+        #
+        #
+        # y_values = df.AC_Type.unique()
+        # print(y_values)
+        # print(type(df.AC_Type.value_counts()))
         return plt
 
 

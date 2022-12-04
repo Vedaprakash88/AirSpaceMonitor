@@ -7,4 +7,5 @@ df = pd.DataFrame({'team': ['A', 'A', 'A', 'B', 'B', 'C'],
 
 for x in df.conference.unique():
     print(x)
-print(df.team.value_counts())
+
+print((df.conference == 'East').sum())
