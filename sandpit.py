@@ -8,4 +8,10 @@ df = pd.DataFrame({'team': ['A', 'A', 'A', 'B', 'B', 'C'],
 for x in df.conference.unique():
     print(x)
 
-print((df.conference == 'East').sum())
+# print((df.conference == 'East').sum())
+print(len((df.conference.unique())))
+
+# monthly_mean.plot(x=df.index, y='A')
+# monthly_mean.plot(y='A')
+# monthly_mean.reset_index().plot(x='index', y='A')
+# monthly_mean.plot(y='A', use_index=True)
