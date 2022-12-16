@@ -1,7 +1,7 @@
 ##!./venv/Scripts/python.exe
 
 # Code created by Veda Chintha, MSc Computer Science student of SRH Berlin University of Applied Sciences.
-# this code fetches the data from flightradar24 website and converts it into a Pandas DataFrame
+
 
 import requests  # To get data
 import json  # to convert website response to dictionary
