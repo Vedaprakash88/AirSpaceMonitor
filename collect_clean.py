@@ -46,8 +46,7 @@ class SelectClean:
         warnings.filterwarnings(action='ignore', category=FutureWarning)
 
         #  Creating an object to fetch the airspace
-        fetchobj = FetchAirspace()
-        df: DataFrame = fetchobj.current_space(bounds=bounds)
+        df: DataFrame = FetchAirspace().current_space(bounds=bounds)
 
         #  DATA TRANSFORMATION:
 
@@ -77,8 +76,8 @@ class SelectClean:
         df.fillna('NA', inplace=True)
 
         # saving the airspace in Excel format in project folder - to keep date-wise record
-        path = "D:\\10. SRH_Academia\\1. All_Notes\\2. Semester 2\\6. Open Source Intelligence\\AirSpaceMonitor\\Data\\Flights.xlsx"
-        df.to_excel(path, index=True, header=True, index_label=0)
+        # path = "D:\\10. SRH_Academia\\1. All_Notes\\2. Semester 2\\6. Open Source Intelligence\\AirSpaceMonitor\\Data\\Flights.xlsx"
+        # df.to_excel(path, index=True, header=True, index_label=0)
 
         #  Returns the airspace in the form of DataFrame object
         return df
@@ -106,8 +105,7 @@ class SelectClean:
 
                 #  Creating an object and fetching a specific flight's data
 
-                fetch_ac_obj = FetchAirspace()
-                df2: DataFrame = fetch_ac_obj.selected_flights(f_id=carr_frame.index[iter1])
+                df2: DataFrame = FetchAirspace().selected_flights(f_id=carr_frame.index[iter1])
 
                 #  Filling NA in place of empty cells
 
@@ -191,13 +189,11 @@ def extract_flight():
 #######################################################################################################################
 
 #  Independent function to save flights data
-def save_flights(df_ex: DataFrame):
+def save_flights(df_ex: DataFrame, df_fl: DataFrame):
+    df_ex: DataFrame = df_ex.append(df_fl, ignore_index=False)
+    df_ex.fillna('NA', inplace=True)
     path = "D:\\10. SRH_Academia\\1. All_Notes\\2. Semester 2\\6. Open Source Intelligence\\AirSpaceMonitor\\Data\\Flights.xlsx"
-    df: DataFrame = pd.read_excel(path, sheet_name="Sheet1",
-                                  index_col=0)
-    df_ex2: DataFrame = df_ex.append(df, ignore_index=False)
-    df_ex2.fillna('NA', inplace=True)
-    df_ex2.to_excel(path, index=True, header=True, index_label=0)
+    df_ex.to_excel(path, index=True, header=True, index_label=0)
 
 
 #######################################################################################################################
@@ -207,12 +203,12 @@ def save_flights(df_ex: DataFrame):
 # Initiating the Program
 
 de_ex = extract_flight()
-get_data_obj = SelectClean()
-df_fl = get_data_obj.flightdata()
+df_fl = SelectClean().flightdata()
+save_flights(de_ex, df_fl)
 
 for af in carriers:
     file_checker(af)  # looking for NATO aircraft in European and Ukrainian Airspace
-save_flights(de_ex)
+
 
 ################################################### End of Package ####################################################
 #######################################################################################################################
