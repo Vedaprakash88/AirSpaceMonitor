@@ -8,24 +8,24 @@ class PlotFindings:
     # Plot Date vs Altitude
     @staticmethod
     def plot_dt_v_alt(df: DataFrame) -> plt:
-        x_values = df.Date
+        x_values = df.AC_Type
         y_values = df.Altitude
-        z_values = df.AC_Type
+        # z_values = df.AC_Type
 
         plt.scatter(x_values, y_values, color='blue', marker='o')
         plt.title('NATO Aircraft @ Altitude')
-        plt.xlabel('Dates')
+        plt.xlabel('AC_Type')
         plt.ylabel('Altitude')
         plt.grid()
         plt.ylim([1000, 60000])
 
-        for x, y, z in zip(x_values, y_values, z_values):
-            label = str(z)
-            plt.annotate(label,  # this is the text
-                         (x, y),  # these are the coordinates to position the label
-                         textcoords="offset points",  # how to position the text
-                         xytext=(0, 10),  # distance from text to points (x,y)
-                         ha='left')  # horizontal alignment can be left, right or center
+        # for x, y in zip(x_values, y_values):
+        #     label = str(y)
+        #     plt.annotate(label,  # this is the text
+        #                  (x, y),  # these are the coordinates to position the label
+        #                  textcoords="offset points",  # how to position the text
+        #                  xytext=(0, 10),  # distance from text to points (x,y)
+        #                  ha='left')  # horizontal alignment can be left, right or center
         return plt
 
     # Plot Date vs No.of Flights
@@ -93,13 +93,6 @@ class PlotFindings:
 
     @staticmethod
     def plot_flight_count_all(df: DataFrame) -> plt:
-
-
-
-
-
-
-
 
         return plt
 
