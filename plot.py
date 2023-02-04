@@ -7,17 +7,17 @@ import matplotlib.pyplot as plt
 class PlotFindings:
     # Plot Date vs Altitude
     @staticmethod
-    def plot_dt_v_alt(df: DataFrame) -> plt:
+    def plot_dt_v_alt(df: DataFrame, carrier) -> plt:
         x_values = df.AC_Type
         y_values = df.Altitude
         # z_values = df.AC_Type
 
         plt.scatter(x_values, y_values, color='blue', marker='o')
-        plt.title('NATO Aircraft @ Altitude')
+        plt.title(carrier + ' Aircraft @ Altitude')
         plt.xlabel('AC_Type')
         plt.ylabel('Altitude')
         plt.grid()
-        plt.ylim([1000, 60000])
+        plt.ylim([100, 60000])
 
         # for x, y in zip(x_values, y_values):
         #     label = str(y)
@@ -30,7 +30,7 @@ class PlotFindings:
 
     # Plot Date vs No.of Flights
     @staticmethod
-    def plot_dt_v_flight_count(df: DataFrame) -> plt:
+    def plot_dt_v_flight_count(df: DataFrame, carrier) -> plt:
         flt_dict = {}
         lst_dates = df.Date.unique()
         for each_date in lst_dates:
@@ -43,7 +43,7 @@ class PlotFindings:
         x_values = df_to_plot.index
         y_values = df_to_plot.No_of_Flts
 
-        plt.scatter(x_values, y_values, color='blue', marker='o')
+        plt.plot(x_values, y_values, color='blue', marker='o')
         plt.title('Aircraft per day')
         plt.xlabel('Dates')
         plt.ylabel('No. of Flights')
@@ -61,7 +61,7 @@ class PlotFindings:
 
     # Aircraft Type vs no of flights
     @staticmethod
-    def plot_flt_type_v_flight_count(df: DataFrame) -> plt:
+    def plot_flt_type_v_flight_count(df: DataFrame, carrier) -> plt:
         typ_dict = {}
         lst_flight_types = df.AC_Type.unique()
         for each_flt_type in lst_flight_types:
@@ -89,11 +89,23 @@ class PlotFindings:
                          ha='left')  # horizontal alignment can be left, right or center
         return plt
 
-    # Plot all flights per airforce
+    # Plot all flights per Air-force
 
     @staticmethod
-    def plot_flight_count_all(df: DataFrame) -> plt:
+    def plot_flight_count_all(df: DataFrame, carriers) -> plt:
+        # fl_cnt = df.groupby('Carrier')['FlightID'].nunique()
+        df['Date'] = pd.to_datetime(df['Date'], dayfirst=True).dt.normalize()
 
+        for carrier in carriers:
+            df_c: DataFrame = df.loc[df['Carrier'] == carrier]
+            fl_cnt = df_c.groupby('Date')['FlightID'].nunique()
+            plt.plot(fl_cnt.index, fl_cnt, label=carrier)
+            plt.title('All Observed Flights')
+            plt.xlabel('Date')
+            plt.ylabel('No. of flights')
+            plt.xticks(rotation=45, ha='right')
+            plt.legend(loc=0)
+            plt.tight_layout()
         return plt
 
     # Aircraft type vs geolocation

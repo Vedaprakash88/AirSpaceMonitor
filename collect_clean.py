@@ -90,7 +90,9 @@ class SelectClean:
 
         #  Slicing the airspace as per selected carrier and storing it in carrier dataframe
 
-        carr_frame: DataFrame = df.loc[df['Carrier'] == carrier]
+        carr_frame: DataFrame = df[df['Carrier'] == carrier]
+        print(carr_frame)
+
         iter1 = 0  # variable to store number of iterations (see below)
 
         #  Checking if there are any flights of the selected carrier

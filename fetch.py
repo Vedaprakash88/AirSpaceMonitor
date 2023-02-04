@@ -107,6 +107,7 @@ class FetchAirspace:
 
         response = requests.get('https://data-cloud.flightradar24.com/zones/fcgi/feed.js', params=params,
                                 headers=headers)
+
         # j = response.json() # same thing as the line below
         resp_dict = json.loads(response.text)  # Nested dictionary
         resp_dict.pop("full_count")
