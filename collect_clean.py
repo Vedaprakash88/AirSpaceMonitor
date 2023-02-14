@@ -103,7 +103,7 @@ class SelectClean:
 
             # Looping through each flight and getting the additional flight data from the website
 
-            while iter1 < carr_frame.shape[0]:
+            while iter1 <= carr_frame.shape[0]:
 
                 #  Creating an object and fetching a specific flight's data
 
