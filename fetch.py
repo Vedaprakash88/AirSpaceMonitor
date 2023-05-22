@@ -105,11 +105,16 @@ class FetchAirspace:
         # response = requests.get('https://data-cloud.flightradar24.com/zones/fcgi/feed.js', params=params, cookies=cookies,
         #                          headers=headers) # this call sends cookies.
 
-        response = requests.get('https://data-cloud.flightradar24.com/zones/fcgi/feed.js', params=params,
+        response = requests.get('https://data-cloud.flightradar24.com/zones/fcgi/feed.js',
+                                params=params,
                                 headers=headers)
 
         # j = response.json() # same thing as the line below
         resp_dict = json.loads(response.text)  # Nested dictionary
+
+        # with open('Temp.txt', 'w') as convert_file:
+        #     convert_file.write(json.dumps(resp_dict))
+
         resp_dict.pop("full_count")
         resp_dict.pop("version")
         resp_dict.pop("stats")

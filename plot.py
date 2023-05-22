@@ -2,6 +2,7 @@ import pandas as pd
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 
+
 class PlotFindings:
     # Plot Date vs Altitude
     @staticmethod
@@ -29,7 +30,7 @@ class PlotFindings:
 
     # Plot Date vs No.of Flights
     @staticmethod
-    def plot_dt_v_flight_count(df: DataFrame, carrier) -> plt:
+    def plot_dt_v_flight_count(df: DataFrame) -> plt:
         flt_dict = {}
         lst_dates = df.Date.unique()
         for each_date in lst_dates:
@@ -108,7 +109,7 @@ class PlotFindings:
             plt.tight_layout()
         return plt
 
-    #@staticmethod
+    # @staticmethod
     # def plot_flight_type_at_date(df: DataFrame, carriers) -> plt:
     #     # under development
     #         plt.plot(x, y)

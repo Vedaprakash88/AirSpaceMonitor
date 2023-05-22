@@ -60,4 +60,9 @@ import matplotlib.pyplot as plt
 # plt.plot(t2, np.cos(2 * np.pi * t2), 'r--')
 # plt.show()
 #####################################################################################################################
+import matplotlib.pyplot as plt
+x = [0, 40]
+y = [0, 278]
 
+plt.plot(x, y)
+plt.show()

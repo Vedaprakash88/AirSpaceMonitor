@@ -91,7 +91,6 @@ class SelectClean:
         #  Slicing the airspace as per selected carrier and storing it in carrier dataframe
 
         carr_frame: DataFrame = df[df['Carrier'] == carrier]
-        print(carr_frame)
 
         iter1 = 0  # variable to store number of iterations (see below)
 
@@ -103,7 +102,7 @@ class SelectClean:
 
             # Looping through each flight and getting the additional flight data from the website
 
-            while iter1 <= carr_frame.shape[0]:
+            while iter1 < carr_frame.shape[0]:
 
                 #  Creating an object and fetching a specific flight's data
 
