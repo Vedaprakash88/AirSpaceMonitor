@@ -167,11 +167,8 @@ released by these GIS companies (see Figure 1).
 These images were of such high quality that the type of equipment and
 their make were also identifiable from those images.
 
-<figure>
-<img src="media/image1.emf" style="width:3.41059in;height:2.01519in" />
-<figcaption><p>Figure 1: Patriot Air Defense Systems Located using
-IMINT. [Image source: Ref. [4]]</p></figcaption>
-</figure>
+![image](https://github.com/user-attachments/assets/ae6cc4b4-ef42-4f75-9e22-a90f6e4969a5)
+Figure 1: Patriot Air Defense Systems Located using IMINT. [Image source: Ref. [4]]
 
 -   **Signals Intelligence (SIGINT) \[4\]:**
 
