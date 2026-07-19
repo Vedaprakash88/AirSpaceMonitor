@@ -1,0 +1,75 @@
+# import pandas as pd
+#
+# # create DataFrame
+# df = pd.DataFrame({'team': ['A', 'A', 'A', 'B', 'B', 'C'],
+#                    'conference': ['East', 'East', 'East', 'West', 'West', 'East'],
+#                    'points': [11, 8, 10, 6, 6, 5]})
+#
+# for x in df.conference.unique():
+#     print(x)
+#
+# # print((df.conference == 'East').sum())
+# print(len((df.conference.unique())))
+######################################################################################################################
+# monthly_mean.plot(x=df.index, y='A')
+# monthly_mean.plot(y='A')
+# monthly_mean.reset_index().plot(x='index', y='A')
+# monthly_mean.plot(y='A', use_index=True)
+#####################################################################################################################
+import numpy as np
+import matplotlib.pyplot as plt
+
+# x = np.arange(10)
+# y_bot = np.linspace(30, 50, 10)
+# y_dif = np.linspace(10, 5, 10)
+#
+# plt.bar(x, y_dif, bottom=y_bot)
+# plt.show()
+######################################################################################################################
+# import numpy as np
+# import matplotlib.pyplot as plt
+#
+#
+# def f(t):
+#     return np.exp(-t) * np.cos(2 * np.pi * t)
+#
+#
+# t1 = np.arange(0.0, 5.0, 0.01)
+# t2 = np.arange(0.0, 5.0, 0.02)
+#
+# print(type(t1))
+#
+# plt.figure(1) # plt can store a lot of figures at once.
+# # The subplot() command specifies numrows, numcols,
+# # fignum where fignum ranges from 1 to numrows*numcols.
+# plt.subplot(121) # no. of rows, no. of columns, plot 1
+# plt.grid()
+# plt.plot(t1, f(t1), 'b-')
+#
+# plt.subplot(122) # no. of rows, no. of columns, plot 2
+# plt.plot(t2, np.cos(2 * np.pi * t2), 'r--')
+#
+# plt.figure(2)
+# # The subplot() command specifies numrows, numcols,
+# # fignum where fignum ranges from 1 to numrows*numcols.
+# plt.subplot(211)
+# plt.grid()
+# plt.plot(t1, f(t1), 'b-')
+#
+# plt.subplot(212)
+# plt.plot(t2, np.cos(2 * np.pi * t2), 'r--')
+# plt.show()
+#####################################################################################################################
+import pandas as pd
+
+# create the data frames
+df1 = pd.DataFrame({'ID': [1, 2, 3], 'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35]})
+df2 = pd.DataFrame({'ID': [4, 5, 6, 7, 8], 'Name': ['AA', 'BB', 'CC', 'DD', 'EE'], 'Age': [25, 30, 35, 40, 45]})
+
+# df1 = df1.reset_index()
+# df2 = df2.reset_index()
+# merge the data frames
+merged_df = pd.merge(df1, df2, how='outer')
+merged_df = merged_df.set_index('ID', inplace=True)
+print(merged_df)
+
